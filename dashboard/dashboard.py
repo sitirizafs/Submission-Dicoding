@@ -153,8 +153,11 @@ filtered_data = all_info_product_df[
 # Best Performing Products
 top_5_best = filtered_data.groupby('product_category_name')['quantity'].sum().sort_values(ascending=False).head(5).reset_index()
 
-# Worst Performing Products
+# Mengambil 5 produk dengan penjualan terendah berdasarkan quantity
 top_5_worst = filtered_data.groupby('product_category_name')['quantity'].sum().sort_values(ascending=True).head(5).reset_index()
+
+# Menyaring untuk memastikan produk dengan quantity yang sama tetap muncul dalam urutan yang konsisten
+top_5_worst_sorted = top_5_worst.sort_values(by=['quantity', 'product_category_name'], ascending=[True, True]).head(5).reset_index(drop=True)
 
 # Membuat visualisasi
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(24, 6))
@@ -174,7 +177,7 @@ sns.barplot(
 sns.barplot(
     x="quantity",
     y="product_category_name",
-    data=top_5_worst,
+    data=top_5_worst_sorted,
     palette=colors,
     ax=ax[1]
 )
