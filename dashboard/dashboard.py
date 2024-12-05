@@ -181,7 +181,7 @@ sns.barplot(
 
 ax[0].set_ylabel('Product Category', fontsize=30)
 ax[0].set_xlabel('Total Sales', fontsize=30)
-ax[0].set_title("Top 5 Best Performing Products (June - August 2018)", loc="right", fontsize=26)
+ax[0].set_title("Top 5 Best Performing Products", loc="right", fontsize=26)
 ax[0].tick_params(axis='y', labelsize=20)
 ax[0].tick_params(axis='x', labelsize=20)
 
@@ -190,12 +190,12 @@ ax[1].set_xlabel('Total Sales', fontsize=30)
 ax[1].invert_xaxis()
 ax[1].yaxis.set_label_position("right")
 ax[1].yaxis.tick_right()
-ax[1].set_title("Top 5 Worst Performing Products (June - August 2018)", loc="right", fontsize=26)
+ax[1].set_title("Top 5 Worst Performing Products", loc="right", fontsize=26)
 ax[1].tick_params(axis='y', labelsize=20)
 ax[1].tick_params(axis='x', labelsize=20)
 
 # Menampilkan judul keseluruhan
-plt.suptitle("Best & Worst Performing Products in Last 3 Months", fontsize=28)
+plt.suptitle("Best & Worst Performing Products in Last 3 Months (June - August 2018)", fontsize=28)
 plt.tight_layout()
 st.pyplot(fig)
 
