@@ -151,10 +151,10 @@ filtered_data = all_info_product_df[
 ]
 
 # Mendapatkan 5 produk terlaris berdasarkan quantity
-top_5_best = all_info_product_df[['product_category_name', 'quantity']].head(5)
+top_5_best = filtered_data.groupby('product_category_name')['quantity'].sum().sort_values(ascending=False).head(5)
 
 # Mendapatkan 5 produk terendah berdasarkan quantity
-top_5_worst = all_info_product_df.sort_values(by="quantity", ascending=True).head(5)
+top_5_worst = filtered_data.groupby('product_category_name')['quantity'].sum().sort_values(ascending=True).head(5)
 
 # Membuat visualisasi
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(24, 6))
@@ -162,12 +162,8 @@ fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(24, 6))
 colors = ["#72BCD4", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
 # Top Performing Products
-sns.barplot(
-    x=top_5_best.values,
-    y=top_5_best.index,
-    palette=colors,
-    ax=ax[0]
-)
+sns.barplot(x="quantity", y="product_category_name", data=top_5_best, ax=ax[0])
+
 ax[0].set_ylabel('Product Category', fontsize=20)
 ax[0].set_xlabel('Total Sales', fontsize=20)
 ax[0].set_title("Top 5 Best Performing Products (June - August 2018)", fontsize=24)
@@ -175,12 +171,8 @@ ax[0].tick_params(axis='y', labelsize=15)
 ax[0].tick_params(axis='x', labelsize=15)
 
 # Worst Performing Products
-sns.barplot(
-    x=top_5_worst.values,
-    y=top_5_worst.index,
-    palette=colors,
-    ax=ax[1]
-)
+sns.barplot(x="quantity", y="product_category_name", data=top_5_worst, ax=ax[1])
+
 ax[1].set_ylabel('Product Category', fontsize=20)
 ax[1].set_xlabel('Total Sales', fontsize=20)
 ax[1].invert_xaxis()  # Membalik sumbu x untuk menampilkan yang terendah
