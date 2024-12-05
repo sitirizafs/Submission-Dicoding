@@ -181,7 +181,7 @@ sns.barplot(
 
 ax[0].set_ylabel('Product Category', fontsize=30)
 ax[0].set_xlabel('Total Sales', fontsize=30)
-ax[0].set_title("Top 5 Best Performing Products", loc="right", fontsize=26)
+ax[0].set_title("Top 5 Best Performing Products", loc="left", fontsize=26)
 ax[0].tick_params(axis='y', labelsize=20)
 ax[0].tick_params(axis='x', labelsize=20)
 
